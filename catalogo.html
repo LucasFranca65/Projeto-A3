@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoListe_Catalogo</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header class="cabe"> <!-- cabeçalho da pagina  -->
+        <h2><a href="index.html">AutoListe</a> <!--logotipo com link--></h2>
+        <nav>
+            <ul class="menu"><!-- menu de opções-->
+                <li><a href="cadastro_veiculo.html">Cadastrar Veiculo</a></li>
+                <li><a href="cadastro_cliente.html">Criar Conta</a></li>
+                <li><a href="catalogo.html">Catalogo</a></li>
+                <li><a href="login.html">login</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <section>
+        <h1>Catalogo de Veiculos</h1>
+    </section>
+    <div id="root">
+
+    </div>
+    <div class=" blocos">
+    <script>
+        // Create a request variable and assign a new XMLHttpRequest object to it.
+        var request = new XMLHttpRequest()
+
+        // Open a new connection, using the GET request on the URL endpoint
+        request.open('GET', 'http://localhost:3000/cadastrocarro', true)
+
+        const app = document.getElementById('root')
+        const container = document.createElement('div')
+        container.setAttribute('class', 'container')
+        app.appendChild(container)
+
+        request.onload = function () {
+            // Comece a acessar os dados JSON
+            var data = JSON.parse(this.response)
+
+            if (request.status >= 200 && request.status < 400) {
+                data.forEach(cadastrocarro => {
+                    console.log(cadastrocarro)
+                    
+                    // cria uma section com a classe card
+                    const card = document.createElement('section')
+                    card.setAttribute('class', 'card')
+
+                    // cria h1 com o nome do cliente
+                    const h1 = document.createElement('h1')
+                    h1.textContent = cadastrocarro.marca
+
+                    // Cria elementos p e preenche com informacoes dos atendimentos
+                    const pModelo = document.createElement('p')
+                    pModelo.textContent = `Modelo: ${cadastrocarro.modelo}` 
+
+                    const pPlaca = document.createElement('p')
+                    pPlaca.textContent = `Placa: ${cadastrocarro.placa}` 
+
+                    const pAno = document.createElement('p')
+                    pAno.textContent = `Ano: ${cadastrocarro.ano}` 
+
+                    const pCor = document.createElement('p')
+                    pCor.textContent = `Cor: ${cadastrocarro.cor}` 
+                    
+                    const pQlm = document.createElement('p')
+                    pQlm.textContent = `Quilometragem: ${cadastrocarro.qlm}` 
+
+
+                    container.appendChild(card)
+                                        
+                    card.appendChild(h1)
+                    card.appendChild(pModelo)
+                    card.appendChild(pPlaca)
+                    card.appendChild(pAno)
+                    card.appendChild(pCor)
+                    card.appendChild(pQlm)
+
+                })
+            } else {
+                console.log('error')
+            }
+        }
+
+        // Send request
+        request.send()
+    </script>
+    </div>
+</body>
+</html>

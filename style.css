@@ -1,0 +1,57 @@
+
+body{
+    margin: 25px;
+}
+
+section, div{
+    margin: 5px;
+}
+
+body, ul, li, p{
+    margin: 0px; /* remove todas as margens*/
+    padding: 0px;/* remove todo o espaçamento entre os elementos*/
+    list-style: none;/*Remove estilo da lista*/
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    
+    
+}
+.cabe{
+    background-color: blue;
+    display: flex;/*posiciona o cabeça e o menu lado a lado*/
+    justify-content: space-between;/*espaço ente o logo e os menus*/
+    align-items: center;/*alinhamento dos itens do cabeçalho*/
+    padding: 20px;/*espaço para a borda da pagina*/
+    flex-wrap: wrap;/*ajusta alinhamento em caso de redução de tela*/
+    
+}
+.menu{
+    display: flex; /* posiciona itens do menu um ao lado do outro*/
+
+}
+.menu li{
+    margin-left: 12px; /* da espaço entre os itens*/
+    
+}
+.menu li a{
+    
+    display: block;
+    padding: 10px;   
+}
+.formulario{
+    margin: 5px;
+    text-align: center;
+}.meio{
+    margin:  15px;
+}
+
+.card{
+   
+    background-color: black;
+    color: aliceblue;
+    
+}
+.blocos{
+    display: flex;
+
+}

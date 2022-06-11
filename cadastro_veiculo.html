@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoListe_Cadastro_veiculo</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <header class="cabe"> <!-- cabeçalho da pagina  -->
+        <h2><a href="index.html">AutoListe</a></h2> <!--logotipo com link-->
+        <nav>
+            <ul class="menu"><!-- menu de opções-->
+                <li><a href="cadastro_veiculo.html">Cadastrar Veiculo</a></li>
+                <li><a href="cadastro_cliente.html">Criar Conta</a></li>
+                <li><a href="catalogo.html">Catalogo</a></li>
+                <li><a href="login.html">login</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <section class="meio">
+        <h2>Cadatro de Veiculo</h2>
+        <p>Cadastre aqui seu veiculo no nosso Catalogo</p></br>
+        <div class="formulario">
+            <form id="form" method="post">
+                <p>
+                <label for="marca">Marca:</label><br>
+                <input type="text" id="marca" name="'marca'" value=""><br>
+                </p>
+                <p>
+                <label for="modelo">Modelo:</label><br>
+                <input type="text" id="modelo" name="'modelo'" value=""><br>
+                </p>
+                <p>
+                <label for="placa">Placa:</label><br>
+                <input type="text" id="placa" name="'placa'" value=""><br>
+                </p>
+                <p>
+                <label for="ano">Ano:</label><br>
+                <input type="text" id="ano" name="'ano'" value="2020"><br>
+                </p>
+                <p>
+                <label for="cor">Cor:</label><br>
+                <input type="text" id="cor" name="'cor'" value=""><br>
+                </p>
+                <p>
+                <label for="qlm">Quilometragem:</label><br>
+                <input type="text" id="qlm" name="'qlm'" value="99999"><br>
+                </p>
+                <p><input type="submit" value="Enviar"></p>
+            </form> 
+        
+            <script>
+                var form = document.getElementById('form')
+    
+                form.addEventListener('submit', function (e) {
+                e.preventDefault()
+    
+                var marca = document.getElementById('marca').value
+                var modelo = document.getElementById('modelo').value
+                var placa = document.getElementById('placa').value
+                var ano = document.getElementById('ano').value
+                var cor = document.getElementById('cor').value
+                var qlm = document.getElementById('qlm').value              
+    
+    
+                fetch('http://localhost:3000/cadastrocarro', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        marca: marca,
+                        modelo: modelo,
+                        placa: placa,
+                        ano: ano,
+                        cor: cor,
+                        qlm: qlm
+                    }),
+                    headers: {
+                        'Content-type': 'application/json; charset=UTF-8',
+                    }
+                })
+                    .then(function (response) {
+                        return response.json()
+                    })
+                    //.then(function (data) {
+                        //console.log(data)
+                        //title = document.getElementById("title")
+                        //body = document.getElementById("bd")
+                        //title.innerHTML = data.title
+                        //body.innerHTML = data.body
+                    }).catch(error => console.error('Error:', error));
+                     // });
+            </script>
+        </div> 
+    </section>
+
+</body>
+</html>
